@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
-func main()  {
-	fmt.Println("Hello World!")
+
+func handlerFunc(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "<h1>Welcome to Metteyya Analytics LLC!</h1>")
+}
+
+func main() {
+	http.HandleFunc("/", handlerFunc)
+	http.ListenAndServe("localhost:3000", nil)
 }
